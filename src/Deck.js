@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Card from './Card';
 import axios from 'axios';
+import "./Deck.css";
 
 // const API_URL = "https://deckofcardsapi.com/api/deck/new/shuffle/";
 const API_BASE_URL = "https://deckofcardsapi.com/api/deck";
@@ -19,26 +20,6 @@ export default class Deck extends Component {
             deck: payload.data
         });
     }
-    // async getCard() {
-    //     // Make API request using deck_id
-    //     // Set state using newly retrieved card info form API
-    //     let id = this.state.deck.deck_id;
-    //     let cardUrl = `${API_BASE_URL}/${id}/draw/`;
-    //     console.log("cardUrl", cardUrl);
-    //     let cardResponse = await axios.get(cardUrl);
-    //     console.log("cardResponse.data", cardResponse.data);
-    //     let card = cardResponse.data.cards[0];
-    //     this.setState(st => ({
-    //         drawn: [
-    //             ...st.drawn,
-    //             {
-    //                 id: card.code,
-    //                 image: card.image,
-    //                 name: `${card.value} of ${card.suit}`
-    //             }
-    //         ]
-    //     }));
-    // }
     async getCard() {
         let id = this.state.deck.deck_id;
         try {
@@ -70,10 +51,11 @@ export default class Deck extends Component {
             <Card key={c.id} name={c.name} image={c.image} />
         ));
         return (
-            <div>
-                <h1>Card Dealer</h1>
-                <button onClick={this.getCard}>Get Card!</button>
-                {cards}
+            <div className="Deck">
+                <h1 className="Deck-title">♦ Card Dealer ♦ </h1>
+                <h2 className="Deck-title subtitle">♦ A little demo made with React ♦</h2>
+                <button className="Deck-btn" onClick={this.getCard}>Get Card!</button>
+                <div className="Deck-cardarea">{cards}</div>
             </div>
         )
     }
